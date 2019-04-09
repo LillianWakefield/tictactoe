@@ -7,6 +7,11 @@ h1 {
    text-align: center;
    font-size: 7vh;
 }
+h4 {
+    color: #E2E2E2;
+    text-align: center;
+    font-size: 4vh;
+ }
 .board{
    height: 50vh;
    display: flex;
