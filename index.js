@@ -1,79 +1,74 @@
-//Defines global variables
+//Defines global variables: players, header messages, and initial game state
+const player1 = 'Player 1';
+const player2 = 'Player 2';
 
-let player1 = 'Player 1';
-let player2 = 'Player 2';
+const ready1 = 'Ready, Player 1?';
+const ready2 = 'Ready, Player 2?';
+
+const win1 = 'Player 1 wins!';
+const win2 = 'Player 2 wins!';
+const winCat = "Cat's game, no one wins!";
+
 let currentPlayer = player1;
 let turnCounter = 0;
 
-
+//Game play triggered by clicking on board
 function selectSpace(){
     const whoseTurn = document.querySelector('.whoseTurnIsItAnyway').innerHTML
-    turnCounter +=1;
-    console.log(turnCounter)
 
-    if(this.innerHTML === '' && ((whoseTurn === 'Ready, Player 1?')||(whoseTurn ==='Ready, Player 2?'))){
+    //Checks if game is still active and if game square is unoccupied
+    if(this.innerHTML === '' && ((whoseTurn === ready1 )||(whoseTurn === ready2))){
+        turnCounter +=1;
+        //Updates header based on current player and toggles player for next turn   
         if(currentPlayer === player1){
             this.innerHTML = 'X';
             currentPlayer = player2;
             if(turnCounter <9 ){
-            $('.whoseTurnIsItAnyway').html('Ready, Player 2?');
+                updateHeader(ready2);
             }
+            //Updates header for end game in case of draw
             else{
-                $('.whoseTurnIsItAnyway').html("Cat's game, no one wins!");
+                updateHeader(winCat);
             }
         }
-        
         else if (currentPlayer === player2) {
             this.innerHTML = 'O';
             currentPlayer = player1;
-            if(turnCounter <9 ){
-                $('.whoseTurnIsItAnyway').html('Ready, Player 1?');
-                }
-                else{
-                    $('.whoseTurnIsItAnyway').html("Cat's game, no one wins!");
-                }
+            updateHeader(ready1);
     }
-        
+        //Checks for win conditions each turn
         checkWinConditions();
     }
 }
 
-//Defines and checks win conditions for each player
-
-function checkWinConditions(){
-    const a1 = document.querySelector('#a1').innerHTML
-    const a2 = document.querySelector('#a2').innerHTML
-    const a3 = document.querySelector('#a3').innerHTML
-
-    const b1 = document.querySelector('#b1').innerHTML
-    const b2 = document.querySelector('#b2').innerHTML
-    const b3 = document.querySelector('#b3').innerHTML
-
-    const c1 = document.querySelector('#c1').innerHTML
-    const c2 = document.querySelector('#c2').innerHTML
-    const c3 = document.querySelector('#c3').innerHTML
-
-    const winCon1 = a1+a2+a3;
-    const winCon2 = b1+b2+b3
-    const winCon3 = c1+c2+c3
-
-    const winCon4 = a1+b1+c1
-    const winCon5 = a2+b2+c2
-    const winCon6 = a3+b3+c3
-
-    const winCon7 = a1+b2+c3
-    const winCon8 = a3+b2+c1
-    
-    if(winCon1 == 'XXX'|| winCon2 == 'XXX' || winCon3 == 'XXX' || winCon4 == 'XXX' || winCon5 == 'XXX' || winCon6 == 'XXX' || winCon7  == 'XXX'|| winCon8 == 'XXX') {
-        return $('.whoseTurnIsItAnyway').html('Player 1 wins!');
-    }
-    if(winCon1 == 'OOO'|| winCon2 == 'OOO' || winCon3 == 'OOO' || winCon4 == 'OOO' || winCon5 == 'OOO' || winCon6 == 'OOO' || winCon7  == 'OOO'|| winCon8 == 'OOO') {
-        return $('.whoseTurnIsItAnyway').html('Player 2 wins!');
-    }
+//Updates header based on gameplay
+function updateHeader(message){
+    $('.whoseTurnIsItAnyway').html(message);
 }
 
-//Get's things started and adds click listener to each board space/
+//Checks for win conditions each turn
+function checkWinConditions(){
+    //Creates array with current game state each turn
+    let inner = []
+    let squaresCheck = document.querySelectorAll('.space')
+    squaresCheck.forEach(square => inner.push(square.innerHTML));
+
+    //Defines win conditions
+    let winCons = [inner.slice(0,3).join(''), inner.slice(3,7).join(''), inner.slice(6).join(''), inner[0]+inner[3]+inner[6], inner[1]+inner[4]+inner[7], inner[2]+inner[5]+inner[8], inner[0]+inner[4]+inner[8], inner[2]+inner[4]+inner[6]]
+    
+    //Checks for win conditions and updates header
+    winCons.forEach(winCon => {
+        if(winCon ==='XXX'){
+            return updateHeader(win1);
+        }
+        else if (winCon ==='OOO'){
+            return updateHeader(win2);
+        }
+    })
+}
+
+//Get's things started and adds click listener to each board space
 $(document).ready(function(){
-    const squares = document.querySelectorAll('.space')
-    squares.forEach(square => square.addEventListener('click', selectSpace));
+    const squaresReady = document.querySelectorAll('.space')
+    squaresReady.forEach(square => square.addEventListener('click', selectSpace));
 })
