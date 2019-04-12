@@ -1,9 +1,9 @@
 <h2>Tic Tac Toe</h2>
-<p>This is a simple Tic Tac Toe game built using jQuery..</P>
+<p>This is a simple Tic Tac Toe game built using jQuery.</P>
 
 <h4>Instructions</h4>
 <p>Because this game is built using JavaScript, just follow this link to see it in action:<br>
- <ahref="https://lillianwakefield.github.io/tictactoe/">https://lillianwakefield.github.io/tictactoe/</a></p>
+ <a href="https://lillianwakefield.github.io/tictactoe/" target="_blank">https://lillianwakefield.github.io/tictactoe/</a></p>
 
 <h4>Build WIth</h4>
 <ul>
@@ -15,4 +15,4 @@
 </ul>
 
 <h4>Author</h4>
-<li>Lillian Wakefield</li>
+<p>Lillian Wakefield</p>
