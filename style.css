@@ -2,18 +2,18 @@ html, body {
     height: 100%;
     background-color: #247BA0;
 }
-h1 {
+.title {
    color: #E2E2E2;
    text-align: center;
    font-size: 7vh;
 }
-h4 {
+.whoseTurnIsItAnyway {
     color: #E2E2E2;
     text-align: center;
     font-size: 4vh;
  }
 
-h2 {
+ .instructions {
     color: #E2E2E2;
     text-align: center;
     font-size: 3vh;
@@ -25,9 +25,23 @@ h2 {
    align-items: center;
    justify-content: center;
 }
-.row{
+.row1, .row2, .row3 {
    display: flex;
    align-items: center;
+}
+.row1 {
+    border-top: 2px solid #E2E2E2;
+    border-left: 2px solid #E2E2E2;
+    border-right: 2px solid #E2E2E2;
+}
+.row2 {
+    border-left: 2px solid #E2E2E2;
+    border-right: 2px solid #E2E2E2;
+}
+.row3 {
+    border-left: 2px solid #E2E2E2;
+    border-right: 2px solid #E2E2E2;
+    border-bottom: 2px solid #E2E2E2;
 }
 .space {
     border: 2px solid #E2E2E2;
@@ -36,9 +50,23 @@ h2 {
     width: 15vh;
     font-size: 7vh;
     display: flex;
-   align-items: center;
-   justify-content: center;
+    align-items: center;
+    justify-content: center;
 }
 .space:hover{
     cursor: pointer;
 }
+.button {
+    display: flex;
+    justify-content: center;
+    margin-top: 2vh;
+}
+.blinkyVictory{
+    animation: blinky 0.3s linear infinite;
+    animation-iteration-count: 3;
+}
+@keyframes blinky{
+    100% {
+        opacity: 0;
+      };
+    }
