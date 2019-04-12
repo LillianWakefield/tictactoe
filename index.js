@@ -80,7 +80,7 @@ function checkWinConditions() {
                 $(winConditions[i][j]).addClass('blinkyVictory');
             };
         };
-    }
+    };
 };
 
 //Get's things started and adds click listener to each board space
