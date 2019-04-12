@@ -1,48 +1,59 @@
-html, body {
+html,
+body {
     height: 100%;
     background-color: #247BA0;
 }
+
 .title {
-   color: #E2E2E2;
-   text-align: center;
-   font-size: 7vh;
+    color: #E2E2E2;
+    text-align: center;
+    font-size: 7vh;
 }
+
 .whoseTurnIsItAnyway {
     color: #E2E2E2;
     text-align: center;
     font-size: 4vh;
- }
+}
 
- .instructions {
+.instructions {
     color: #E2E2E2;
     text-align: center;
     font-size: 3vh;
 }
-.board{
-   height: 50vh;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
+
+.board {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-.row1, .row2, .row3 {
-   display: flex;
-   align-items: center;
+
+.row1,
+.row2,
+.row3 {
+    display: flex;
+    align-items: center;
 }
+
 .row1 {
     border-top: 2px solid #E2E2E2;
     border-left: 2px solid #E2E2E2;
     border-right: 2px solid #E2E2E2;
 }
+
 .row2 {
     border-left: 2px solid #E2E2E2;
     border-right: 2px solid #E2E2E2;
 }
+
 .row3 {
     border-left: 2px solid #E2E2E2;
     border-right: 2px solid #E2E2E2;
     border-bottom: 2px solid #E2E2E2;
 }
+
 .space {
     border: 2px solid #E2E2E2;
     color: #E2E2E2;
@@ -53,20 +64,24 @@ html, body {
     align-items: center;
     justify-content: center;
 }
-.space:hover{
+
+.space:hover {
     cursor: pointer;
 }
+
 .button {
     display: flex;
     justify-content: center;
     margin-top: 2vh;
 }
-.blinkyVictory{
+
+.blinkyVictory {
     animation: blinky 0.3s linear infinite;
     animation-iteration-count: 3;
 }
-@keyframes blinky{
+
+@keyframes blinky {
     100% {
         opacity: 0;
-      };
-    }
+    };
+}
