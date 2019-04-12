@@ -15,7 +15,6 @@ let turnCounter = 0;
 //Game play triggered by clicking on board
 function selectSpace(){
     const whoseTurn = document.querySelector('.whoseTurnIsItAnyway').textContent;
-
     //Checks if game is still active and if game square is unoccupied
     if(this.textContent === '' && (whoseTurn === ready1 ||whoseTurn === ready2)){
         turnCounter +=1;
@@ -39,8 +38,10 @@ function selectSpace(){
             currentPlayer = player1;
             updateHeader(ready1);
     };
-        //Checks for win conditions each turn
-        checkWinConditions();
+        //Checks for win conditions during game play
+        if(turnCounter >= 5){
+            checkWinConditions();
+        };
     };
 };
 
@@ -52,34 +53,36 @@ function updateHeader(message){
     };
 };
 
-//Checks for win conditions each turn
 function checkWinConditions(){
-    //Creates array with current game state each turn
-    const inner = [];
-    const squaresCheck = document.querySelectorAll('.space');
-    squaresCheck.forEach(square => inner.push(square.textContent));
-
     //Defines win conditions
-    const winCons = [
-        inner.slice(0,3).join(''), 
-        inner.slice(3,6).join(''), 
-        inner.slice(6).join(''), 
-        inner[0]+inner[3]+inner[6], 
-        inner[1]+inner[4]+inner[7], 
-        inner[2]+inner[5]+inner[8], 
-        inner[0]+inner[4]+inner[8], 
-        inner[2]+inner[4]+inner[6]
+    const allSquares = document.querySelectorAll('.space');
+    const winConditions = [
+        [allSquares[0],allSquares[1],allSquares[2]],  
+        [allSquares[3],allSquares[4],allSquares[5]], 
+        [allSquares[6],allSquares[7],allSquares[8]], 
+        [allSquares[0],allSquares[3],allSquares[6]], 
+        [allSquares[1],allSquares[4],allSquares[7]], 
+        [allSquares[2],allSquares[5],allSquares[8]], 
+        [allSquares[0],allSquares[4],allSquares[8]], 
+        [allSquares[2],allSquares[4],allSquares[6]],
     ];
     
-    //Checks for win conditions and updates header
-    winCons.forEach(winCon => {
-        if(winCon ==='XXX'){
-            return updateHeader(win1);
-        }
-        else if (winCon ==='OOO'){
-            return updateHeader(win2);
-        };
-    });
+    //Checks for win conditions, updates header and board
+   for(let i=0; i<winConditions.length; i++){
+    const myArr = [];
+    winConditions[i].forEach(winCondition=> myArr.push(winCondition.textContent))  ; 
+    const myString = myArr.join('');            
+            for(let j = 0; j < winConditions[i].length; j++) {
+                if((myString ==='XXX')){
+                    updateHeader(win1);
+                    $(winConditions[i][j]).addClass('blinkyVictory');
+                }
+                else if((myString==='OOO')){
+                    updateHeader(win2);
+                    $(winConditions[i][j]).addClass('blinkyVictory');
+                };
+            };
+   }
 };
 
 //Get's things started and adds click listener to each board space

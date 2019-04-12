@@ -3,7 +3,7 @@
 
 <h4>Instructions</h4>
 <p>Because this game is built using JavaScript, just follow this link to see it in action:<br>
- <a href="https://lillianwakefield.github.io/tictactoe/" target="_blank">https://lillianwakefield.github.io/tictactoe/</a></p>
+ <a href="https://lillianwakefield.github.io/tictactoe/">https://lillianwakefield.github.io/tictactoe/</a></p>
 
 <h4>Build WIth</h4>
 <ul>
